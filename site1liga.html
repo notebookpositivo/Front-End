@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hortas Comunitárias de Maringá - Conectando você à natureza e à comunidade local!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e5631;
+            --primary-light: #2e7d32;
+            --primary-dark: #154423;
+            --secondary: #f9a825;
+            --secondary-light: #ffc107;
+            --light: #e4f5d4;
+            --dark: #1a3c27;
+            --text: #333;
+            --white: #ffffff;
+            --gray: #f5f5f5;
+            --earth: #8d6e63;
+            --leaf: #558b2f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23aed581" fill-opacity="0.1" d="M10,10 Q25,5 40,10 T70,10 Q85,5 90,10 T95,40 Q100,55 90,60 T90,90 Q85,95 60,90 T10,90 Q5,85 10,60 T10,40 Q5,25 10,10"></path></svg>');
+            background-size: 200px;
+            z-index: -1;
+            opacity: 0.4;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        header {
+            background: linear-gradient(rgba(26, 60, 39, 0.85), rgba(26, 60, 39, 0.85)), 
+                         url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path fill="%23e4f5d4" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path><path fill="%23e4f5d4" d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path><path fill="%23e4f5d4" d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            height: 100px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+        }
+        
+        .logo-icon:hover {
+            transform: rotate(15deg) scale(1.05);
+            background-color: rgba(76, 175, 80, 0.3);
+        }
+        
+        .logo-icon i {
+            font-size: 3.5rem;
+            color: var(--secondary-light);
+        }
+        
+        .logo h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, var(--secondary-light), var(--light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .project-banner {
+            background: linear-gradient(45deg, var(--secondary), var(--secondary-light));
+            color: var(--dark);
+            padding: 12px 30px;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .project-banner i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .cta-button i {
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover i {
+            transform: translateX(5px);
+        }
+        
+        nav {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-small {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+        
+        .logo-small i {
+            color: var(--secondary-light);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+            font-size: 1.05rem;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-light);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.6rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary), var(--secondary-light));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        
+        .section-header p {
+            max-width: 700px;
+            margin: 25px auto 0;
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text {
+            padding: 20px;
+        }
+        
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-size: 1.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .about-text p:before {
+            content: "🌱";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: rotate(-1deg);
+            transition: transform 0.5s ease;
+            position: relative;
+            height: 400px;
+        }
+        
+        .about-image:hover {
+            transform: rotate(0) scale(1.02);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .about-image:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            width: 100px;
+            height: 100px;
+            background: var(--secondary);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .benefits {
+            background-color: var(--gray);
+            position: relative;
+        }
+        
+        .benefits:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path fill="%23e4f5d4" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path><path fill="%23e4f5d4" d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path><path fill="%23e4f5d4" d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            transform: rotate(180deg);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+        }
+        
+        .benefit-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 4px solid var(--secondary);
+        }
+        
+        .benefit-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+        
+        .benefit-card:hover:before {
+            transform: scaleX(1);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .benefit-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover .benefit-icon {
+            transform: scale(1.1);
+        }
+        
+        .benefit-card h3 {
+            color: var(--primary);
+            margin-bottom: 18px;
+            font-size: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light), var(--secondary));
+            z-index: 0;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            margin-bottom: 40px;
+            z-index: 1;
+        }
+        
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: var(--white);
+            color: var(--primary);
+            border-radius: 50%;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 auto 25px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover .step-number {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+        
+        .step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
+        .locations {
+            background-color: var(--gray);
+            position: relative;
+        }
+        
+        .locations:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path fill="%23e4f5d4" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path><path fill="%23e4f5d4" d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path><path fill="%23e4f5d4" d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 18px 25px;
+            border: 2px solid var(--primary-light);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .search-container i {
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 35px;
+        }
+        
+        .location-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            transform: translateY(0);
+        }
+        
+        .location-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .location-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .location-image::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to top, var(--white), transparent);
+        }
+        
+        .location-info {
+            padding: 25px;
+        }
+        
+        .location-info h3 {
+            color: var(--primary);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+        }
+        
+        .location-info h3 i {
+            color: var(--secondary);
+            background: rgba(249, 168, 37, 0.15);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .location-contact {
+            margin: 25px 0;
+            padding: 20px;
+            background-color: rgba(76, 175, 80, 0.08);
+            border-radius: 12px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .location-contact p {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .location-contact i {
+            color: var(--primary);
+            min-width: 25px;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            background: linear-gradient(to bottom, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        footer::before {
+            content: "";
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path fill="%231e5631" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path><path fill="%231e5631" d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path><path fill="%231e5631" d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .footer-links li:before {
+            content: "🌿";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 3px 0;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-light);
+            transform: translateX(5px);
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+        
+        .contact-info i {
+            color: var(--secondary-light);
+            font-size: 1.2rem;
+            min-width: 25px;
+            margin-top: 3px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+        
+        .leaf {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            z-index: -1;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 1100px) {
+            .steps::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .steps {
+                gap: 30px;
+            }
+            
+            .step {
+                flex: 0 0 calc(50% - 30px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                border-top: 2px solid var(--secondary);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .step {
+                flex: 0 0 100%;
+            }
+            
+            .logo h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="leaf" style="top: 10%; left: 5%;">🍃</div>
+    <div class="leaf" style="top: 20%; right: 8%;">🌿</div>
+    <div class="leaf" style="top: 50%; left: 3%;">🍀</div>
+    <div class="leaf" style="bottom: 30%; right: 5%;">🌱</div>
+    <div class="leaf" style="bottom: 15%; left: 10%;">🌾</div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h1>Hortas Comunitárias de Maringá</h1>
+                </div>
+                <p class="tagline">Conectando você à natureza e à comunidade local!</p>
+                <div class="project-banner">
+                    <i class="fas fa-star"></i> Projeto ativo desde 2007
+                </div>
+                <p>Cultive sua própria comida, fortaleça laços e ajude o meio ambiente!</p>
+                <a href="#cadastro" class="cta-button">Participe Agora <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo-small">
+                <i class="fas fa-seedling"></i>
+                <span>Hortas Comunitárias</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#funciona">Como Funciona</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#cadastro">Cadastro</a></li>
+                <li><a href="#locais">Locais</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="sobre">
+        <div class="container">
+            <div class="section-header">
+                <h2>O que são as Hortas Comunitárias?</h2>
+                <p>Conheça a iniciativa que transforma Maringá e a vida de seus moradores</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Transformando terrenos em oportunidades</h3>
+                    <p>As hortas comunitárias de Maringá foram uma iniciativa de Feniman e Araújo em 2007, firmando uma parceria entre a Prefeitura, o Centro de Referência em Agricultura Urbana e Periurbana (CERAUP) da Universidade Estadual de Maringá, as famílias interessadas e as centrais de abastecimento de energia elétrica.</p>
+                    <p>Essas hortas estão integradas ao programa "Maringá Saudável", com o objetivo de melhorar a qualidade de vida da população. Terrenos baldios, antes usados como lixões, são indicados pela população e restaurados pela prefeitura para serem cultivados pelos participantes.</p>
+                    <p>Quem nunca pensou em comer alimentos sem agrotóxicos, cuidar de plantas no tempo livre, ou até ganhar uma pequena renda com isso? Se você é uma dessas pessoas e ainda não conhece, venha participar da horta comunitária!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?q=80&w=2070" alt="Horta Comunitária">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funciona">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como Funciona?</h2>
+                <p>Conheça o processo que transforma terrenos abandonados em espaços produtivos</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070" alt="Funcionamento das Hortas">
+                </div>
+                <div class="about-text">
+                    <h3>Parcerias que transformam</h3>
+                    <p>As hortas são implementadas em terrenos baldios, muitas vezes em fundos de vale, que antes serviam como descarte de lixo e são reformados para uso legal.</p>
+                    <p>A parceria com empresas como Cocamar, Usaçucar, Frigorífico Big Boi e BS-Bios garante a doação de sementes, mudas, adubos, infraestrutura, reuniões mensais e a disponibilização de assistentes técnicos e equipe multidisciplinar.</p>
+                    <p>O processo de plantio e manutenção é responsabilidade exclusiva das famílias, e visitantes podem fazer doações de alimentos, insumos e tempo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Benefícios das Hortas Comunitárias</h2>
+                <p>Descubra como participar pode transformar sua vida e sua comunidade</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-apple-alt"></i>
+                    </div>
+                    <h3>Alimento Saudável</h3>
+                    <p>Cultive alimentos frescos e sem agrotóxicos para consumo próprio, garantindo uma alimentação mais saudável para sua família.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Renda Extra</h3>
+                    <p>Venda o excedente da produção e complemente sua renda familiar de forma sustentável.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Socialização</h3>
+                    <p>Conheça novas pessoas, socialize e fortaleça a comunidade em um ambiente acolhedor.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Bem-Estar</h3>
+                    <p>Exercite-se ao ar livre e cuide da sua saúde física e mental através do contato com a natureza.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Meio Ambiente</h3>
+                    <p>Transforme terrenos baldios em áreas verdes produtivas, contribuindo para uma cidade mais sustentável.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Comunidade</h3>
+                    <p>Participe de um projeto que fortalece os laços comunitários e promove a solidariedade entre os moradores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cadastro">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como se Cadastrar?</h2>
+                <p>Siga estes passos simples para começar a participar das Hortas Comunitárias</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Procure a SEMUSP</h3>
+                    <p>A Secretaria Municipal de Serviços Públicos (SEMUSP) é responsável por coordenar o programa de Hortas Comunitárias em Maringá.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Participe da reunião inicial</h3>
+                    <p>A primeira reunião tem como objetivo esclarecer como funciona o projeto e como se cadastrar.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Documentos necessários</h3>
+                    <p>É provável que você precise apresentar documentos como RG, CPF e comprovante de residência para se cadastrar.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Orientações</h3>
+                    <p>A prefeitura pode fornecer orientações sobre o que e como plantar, bem como sobre os cuidados com a horta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="locais" class="locations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Locais das Hortas Comunitárias</h2>
+                <p>Encontre a horta comunitária mais próxima de você</p>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar horta por nome ou bairro...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="locations-grid" id="locationsGrid">
+
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?q=80&w=2070');"></div>
+                    <div class="location-info">
+                        <h3><i class="fas fa-map-marker-alt"></i> 01 - Jardim Aurora</h3>
+                        <p>Responsável: Moreira</p>
+                        <div class="location-contact">
+                            <p><i class="fas fa-phone"></i> (44) 99922-0533</p>
+                            <p><i class="fas fa-map-pin"></i> Rua Pioneiro Antônio Marin Filho, 645 - Jardim Aurora</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1594122230689-45899d9e6f69?q=80&w=2070');"></div>
+                    <div class="location-info">
+                        <h3><i class="fas fa-map-marker-alt"></i> 02 - Borba Gato</h3>
+                        <p>Responsáveis: João Ribeiro, Francisco</p>
+                        <div class="location-contact">
+                            <p><i class="fas fa-phone"></i> (44) 99858-7489 / (44) 99856-0613</p>
+                            <p><i class="fas fa-map-pin"></i> Rua dos Gerânios, 2016 - Conjunto Habitacional Inocente Vila Nova Júnior</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1492496913980-501348b61469?q=80&w=2070');"></div>
+                    <div class="location-info">
+                        <h3><i class="fas fa-map-marker-alt"></i> 04 - Cidade Alta</h3>
+                        <p>Responsáveis: Alberto, Augusto</p>
+                        <div class="location-contact">
+                            <p><i class="fas fa-phone"></i> (44) 99870-6125 / (44) 99973-7970 / (44) 99707-3952</p>
+                            <p><i class="fas fa-map-pin"></i> Rua Evaldo Braga, 1386 - Conjunto Residencial Cidade Alta</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070');"></div>
+                    <div class="location-info">
+                        <h3><i class="fas fa-map-marker-alt"></i> 05 - Cidade Canção</h3>
+                        <p>Responsáveis: Oerly, Maura</p>
+                        <div class="location-contact">
+                            <p><i class="fas fa-phone"></i> (44) 99145-1018 / (44) 98424-6170</p>
+                            <p><i class="fas fa-map-pin"></i> Rua Pioneiro Celeste Fadel, 313 - Jardim São Silvestre</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1974');"></div>
+                    <div class="location-info">
+                        <h3><i class="fas fa-map-marker-alt"></i> 06 - Vila Esperança</h3>
+                        <p>Responsáveis: Juraci, Maria</p>
+                        <div class="location-contact">
+                            <p><i class="fas fa-phone"></i> (44) 99846-1665 / (44) 99994-3311 / (44) 99716-4708</p>
+                            <p><i class="fas fa-map-pin"></i> Rua Maria Thereza Bergamasco, 638 - Cidade Jardim</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-image" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2069');"></div>
+                    <div class="location-info">
+                        <h3><i class="fas fa-map-marker-alt"></i> 07 - Distrito Floriano</h3>
+                        <p>Responsáveis: Paulo, Aparecida</p>
+                        <div class="location-contact">
+                            <p><i class="fas fa-phone"></i> (44) 99737-3560 / (44) 98454-8909 / (44) 99903-4204</p>
+                            <p><i class="fas fa-map-pin"></i> Avenida Antônio Santiago Gualda, 1475 - Distrito de Floriano (Floriano)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" class="cta-button">Ver Todas as 36 Hortas <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Hortas Comunitárias</h3>
+                    <p>Transformando terrenos baldios em espaços verdes produtivos e fortalecendo a comunidade de Maringá desde 2007.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#sobre">Sobre o Projeto</a></li>
+                        <li><a href="#funciona">Como Funciona</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#cadastro">Como se Cadastrar</a></li>
+                        <li><a href="#locais">Locais das Hortas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-building"></i> Secretaria Municipal de Serviços Públicos (SEMUSP)</p>
+                        <p><i class="fas fa-phone"></i> (44) 3221-1234</p>
+                        <p><i class="fas fa-envelope"></i> hortas@maringa.pr.gov.br</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Prefeitura de Maringá - Av. XV de Novembro, 701</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Hortas Comunitárias de Maringá. Todos os direitos reservados. | Projeto Liga Jovem 2025</p>
+                <p>&copy; Créditos a Manoela Castro Geres e Professor Flávio Faria</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        function toggleMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+        }
+        
+        function setupSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        const navLinks = document.getElementById('navLinks');
+                        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+                        navLinks.classList.remove('active');
+                        const icon = mobileMenuBtn.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const locationsGrid = document.getElementById('locationsGrid');
+            const locationCards = locationsGrid.getElementsByClassName('location-card');
+            
+            searchInput.addEventListener('keyup', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                Array.from(locationCards).forEach(card => {
+                    const cardText = card.textContent.toLowerCase();
+                    if (cardText.includes(searchTerm)) {
+                        card.style.display = '';
+                        setTimeout(() => {
+                            card.style.opacity = 1;
+                            card.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        card.style.opacity = 0;
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        }
+        
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.about-content, .section-header, .benefit-card, .step, .location-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        function initAnimations() {
+            const animatedElements = document.querySelectorAll('.about-content, .section-header, .benefit-card, .step, .location-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            const headerContent = document.querySelector('.header-content');
+            headerContent.style.opacity = 0;
+            headerContent.style.transform = 'translateY(30px)';
+            headerContent.style.transition = 'opacity 1s ease, transform 1s ease';
+            
+            setTimeout(() => {
+                headerContent.style.opacity = 1;
+                headerContent.style.transform = 'translateY(0)';
+            }, 300);
+            
+            const leaves = document.querySelectorAll('.leaf');
+            leaves.forEach((leaf, index) => {
+                leaf.style.animationDuration = `${15 + index * 2}s`;
+                leaf.style.animationDelay = `${index * 1.5}s`;
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleMobileMenu();
+            setupSmoothScroll();
+            setupSearch();
+            initAnimations();
+            
+
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
